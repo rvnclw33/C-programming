@@ -7,6 +7,7 @@ typedef struct
     char packaging[16];
     int price;
 } DRINK;
+
 int cmp(const void *a, const void *b)
 {
     DRINK *left = (DRINK *)a; 
@@ -14,13 +15,13 @@ int cmp(const void *a, const void *b)
 
     if (strcmp(left->packaging, right->packaging) != 0)
     {
-        return -strcmp(left->packaging, right->packaging); 
+        return -strcmp(left->packaging, right->packaging); // char-descending
     }
     if (strcmp(left->name, right->name) != 0)
     {
-        return -strcmp(left->name, right->name);
+        return -strcmp(left->name, right->name); // char-descending
     }
-    return -(left->price - right->price);
+    return -(left->price - right->price); // int-descending
 }
 
 int main(int argc, char *argv[])
