@@ -22,9 +22,15 @@ int cmp(const void *a, const void *b)
         return -strcmp(left->full_name, right->full_name);
     }
 
-    if(left->baggage_weight != right->baggage_weight)
+    // comparing double value (ascending)
+    if(left->baggage_weight < right->baggage_weight)
     {
-        return left->baggage_weight - right->baggage_weight;
+        return -1;
+    }
+
+    if(left->baggage_weight > right->baggage_weight)
+    {
+        return 1;
     }
 
     if(left->age != right->age)
