@@ -38,11 +38,16 @@ int cmp(const void *a, const void *b)
         return (left->capacity - right->capacity);
     }
 
+    // char registration_number
     return -(strcmp(left->registration_number, right->registration_number));
 }
 
 int main(int argc, char *argv[])
 {
+    char line[48];
+    AIRCRAFT aircraft[240];
+    int length = 0;
+
     if (argc < 2)
     {
         fprintf(stderr, "Command-line is not presented.\n");
@@ -57,27 +62,28 @@ int main(int argc, char *argv[])
         return 5;
     }
 
-    char line[48];
-    int n = atoi(fgets(line, sizeof(line), in));
-    AIRCRAFT aircraft[n];
-
-    for (int i = 0; i < n; i++)
+    while (fgets(line, sizeof(line), in))
     {
         line[strcspn(line, "\r\n")] = '\0';
 
-        fgets(line, sizeof(line), in);
+        // break at "END"
+        if (strcmp(line, "END") == 0)
+        {
+            break;
+        }
 
-        strcpy(aircraft[i].registration_number, strtok(line, ";"));
-        aircraft[i].capacity = atoi(strtok(NULL, ";"));
-        strcpy(aircraft[i].model, strtok(NULL, ";"));
-        aircraft[i].wing_span = atof(strtok(NULL, ";"));
+        strcpy(aircraft[length].registration_number, strtok(line, ";"));
+        aircraft[length].capacity = atoi(strtok(NULL, ";"));
+        strcpy(aircraft[length].model, strtok(NULL, ";"));
+        aircraft[length].wing_span = atof(strtok(NULL, ";"));
+        length++;
     }
 
     fclose(in);
 
-    qsort(aircraft, n, sizeof(AIRCRAFT), cmp);
+    qsort(aircraft, length, sizeof(AIRCRAFT), cmp);
 
-    if(argc < 3)
+    if (argc < 3)
     {
         fprintf(stderr, "Command-line is not present.\n");
         return 3;
@@ -85,17 +91,17 @@ int main(int argc, char *argv[])
 
     FILE *out = fopen(argv[2], "w");
 
-    if(!out)
+    if (!out)
     {
         fprintf(stderr, "%s cannot be opened.\n", argv[2]);
         return 4;
     }
 
-    fprintf(out, "%d\n", n);
-    for(int i = 0; i < n; i++)
+    for (int i = 0; i < length; i++)
     {
         fprintf(out, "%s;%d;%s;%.2lf\n", aircraft[i].registration_number, aircraft[i].capacity, aircraft[i].model, aircraft[i].wing_span);
     }
+    fprintf(out, "END\n");
 
     fclose(out);
 
