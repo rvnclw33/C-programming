@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
     PASSENGERS passenger[180];
     int length = 0;
 
-    if (argc == 1)
+    if (argc < 2)
     {
         fprintf(stderr, "Input file is not presented.\n");
         return 3;
@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
 
     qsort(passenger, length, sizeof(PASSENGERS), cmp);
 
-    if(argc == 2)
+    if(argc < 3)
     {
         fprintf(stderr, "Output file is not presented.\n");
         return 5;
