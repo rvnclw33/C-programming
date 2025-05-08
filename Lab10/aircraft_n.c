@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
 
     qsort(aircraft, n, sizeof(AIRCRAFT), cmp);
 
-    if(argc < 3)
+    if (argc < 3)
     {
         fprintf(stderr, "Command-line is not present.\n");
         return 3;
@@ -85,14 +85,14 @@ int main(int argc, char *argv[])
 
     FILE *out = fopen(argv[2], "w");
 
-    if(!out)
+    if (!out)
     {
         fprintf(stderr, "%s cannot be opened.\n", argv[2]);
         return 4;
     }
 
     fprintf(out, "%d\n", n);
-    for(int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
         fprintf(out, "%s;%d;%s;%.2lf\n", aircraft[i].registration_number, aircraft[i].capacity, aircraft[i].model, aircraft[i].wing_span);
     }
