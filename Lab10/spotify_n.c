@@ -14,12 +14,12 @@ int cmp(const void *a, const void *b)
     TRACK *left = (TRACK *)a;
     TRACK *right = (TRACK *)b;
 
-    if (left->plays - right->plays)
+    if (left->plays != right->plays)
     {
         return -(left->plays - right->plays);
     }
 
-    if (left->length - right->length)
+    if (left->length != right->length)
     {
         return left->length - right->length;
     }

@@ -16,7 +16,7 @@ int cmp(const void *a, const void *b)
     FLIGHT *right = (FLIGHT *)b;
 
     // int passenger_count desc
-    if (left->passenger_count - right->passenger_count)
+    if (left->passenger_count = right->passenger_count)
     {
         return -(left->passenger_count - right->passenger_count);
     }

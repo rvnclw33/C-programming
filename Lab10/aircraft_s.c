@@ -33,7 +33,7 @@ int cmp(const void *a, const void *b)
     }
 
     // int capacity
-    if (left->capacity - right->capacity)
+    if (left->capacity != right->capacity)
     {
         return (left->capacity - right->capacity);
     }

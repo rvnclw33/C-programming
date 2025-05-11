@@ -32,8 +32,8 @@ int cmp(const void *a, const void *b)
         return -strcmp(left->model, right->model);
     }
 
-    // int capacity
-    if (left->capacity - right->capacity)
+    // int capacity 
+    if (left->capacity != right->capacity)
     {
         return (left->capacity - right->capacity);
     }
