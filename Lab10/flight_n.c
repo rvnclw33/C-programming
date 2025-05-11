@@ -61,10 +61,10 @@ int main(int argc, char *argv[])
     int n = atoi(fgets(line, sizeof(line), in));
     FLIGHT flight[n];
 
-    for(int i = 0; i < n; i++)
-    {   
-        line[strcspn(line, "\r\n")] = '\0';
+    for (int i = 0; i < n; i++)
+    {
         fgets(line, sizeof(line), in);
+        line[strcspn(line, "\r\n")] = '\0';
 
         strcpy(flight[i].flight_number, strtok(line, ";"));
         flight[i].flight_duration = atof(strtok(NULL, ";"));

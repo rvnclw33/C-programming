@@ -63,9 +63,8 @@ int main(int argc, char *argv[])
 
     for (int i = 0; i < n; i++)
     {
-        line[strcspn(line, "\r\n")] = '\0';
-
         fgets(line, sizeof(line), in);
+        line[strcspn(line, "\r\n")] = '\0'; //always define after fgets() 
 
         strcpy(aircraft[i].registration_number, strtok(line, ";"));
         aircraft[i].capacity = atoi(strtok(NULL, ";"));

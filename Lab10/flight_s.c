@@ -45,7 +45,6 @@ int main(int argc, char *argv[])
 {
     char line[57];
     FLIGHT flight[180];
-    int length = 0;
 
     if (argc < 2)
     {
@@ -61,6 +60,7 @@ int main(int argc, char *argv[])
         return 8;
     }
 
+    int length = 0;
     while (fgets(line, sizeof(line), in))
     {
         line[strcspn(line, "\r\n")] = '\0';
